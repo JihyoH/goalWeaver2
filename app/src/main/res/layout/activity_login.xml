@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#323745"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="LOGIN"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@null"
+        android:src="@drawable/logo_e"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        >
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Email"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/TextInputEditText_email"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        >
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
+            android:id="@+id/TextInputEditText_password"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/btn_login1"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_marginBottom="16dp"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:src="@drawable/logo"
+            android:layout_centerVertical="true"
+            />
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:textColor="#ffffff"
+            android:text="Login"
+            android:gravity="center"
+            android:enabled="true"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="or"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout_loginsec"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/login2"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:clickable="true"
+        android:layout_marginBottom="16dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:textColor="#ffffff"
+            android:text="Login With 000"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:enabled="true"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:src="@drawable/logo"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="5"
+            android:textSize="24sp"
+            android:text="Find Password"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="5"
+            android:textSize="24sp"
+            android:text="Sign Up"
+            android:textColor="@android:color/holo_blue_dark"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
+    <!--android:inputType="textPassword"-->
