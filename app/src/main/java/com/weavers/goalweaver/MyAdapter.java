@@ -1,7 +1,9 @@
 package com.weavers.goalweaver;
 
 import android.app.Activity;
+import android.content.Context;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,9 +15,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import java.util.List;
+import java.util.SimpleTimeZone;
+
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private String[] mDataset;
+    private List<NewsData> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -25,7 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         // each data item is just a string in this case
         public TextView TextView_title;
         public TextView TextView_content;
-        public ImageView ImageView_title;
+        public SimpleDraweeView ImageView_title;
 
         public MyViewHolder(View v) { //row_new.xml에 들어가는 이미지와 텍스트 정의
             super(v);
@@ -42,10 +50,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(String[] myDataset) {
+    public MyAdapter(List<NewsData> myDataset, Context context) {
         //{"1","2"}
         mDataset = myDataset; // 굳이 액티비티에서 값을 받아오지 않고 MyAdpter이라는 지금 이 함수에 입력값 없이
         // 바로 여기에 mDataset = NewsActivity 어쩌고 해서 불러올 수도 있음.
+
+        Fresco.initialize(context); // 액티비티에서 컨텍스트 받아옴. 이런식이면 데이터 누수? 현상이 일어나서 좋지 않음.
+
     }
 
     // 홀더에 부모 뷰를 정하기
@@ -67,13 +78,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.TextView_title.setText(mDataset[position]);
 
+        NewsData news = mDataset.get(position);
+        holder.TextView_title.setText(news.getTitle());
+
+        String content =news.getContent();
+        if(content != null && content != "null" && content.length() > 0) {
+            holder.TextView_content.setText(content);
+        }else{
+            holder.TextView_content.setText("내용없음");
+
+        }
+        Uri uri = Uri.parse(news.getUrlToImage());
+        holder.ImageView_title.setImageURI(uri);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        //삼항 연산자
+        return mDataset == null ? 0: mDataset.size();//if else 한줄로 합친거.
     }
 }

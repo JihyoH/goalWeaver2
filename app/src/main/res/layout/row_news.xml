@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:orientation="vertical"
-    >
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
     <!-- 한 줄 짜리 화면 -->
 
@@ -26,12 +25,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="156dp">
-                <ImageView
+
+                <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/ImageView_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@null"
-                    android:src="@drawable/logo_b"/>
+                    />
                 <TextView
                     android:id="@+id/TextView_title"
                     android:layout_width="match_parent"
