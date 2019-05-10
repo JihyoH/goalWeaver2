@@ -107,6 +107,7 @@ public class NewsActivity extends AppCompatActivity {
                                         intent.putExtra("urlToImage", newsDataSet.getUrlToImage());
                                         intent.putExtra("content", newsDataSet.getContent());
                                         startActivity(intent);
+                                        //인텐트에 밀어넣고 어디에서 이걸 가져와...?
                                     }
 
                                 }
