@@ -10,10 +10,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
-
     TextInputEditText TextInputEditText_email, TextInputEditText_password;
     RelativeLayout RelativeLayout_login;
     String emailOK = "123@gmail.com";
