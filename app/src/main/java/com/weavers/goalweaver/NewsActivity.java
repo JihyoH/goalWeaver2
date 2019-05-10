@@ -91,7 +91,26 @@ public class NewsActivity extends AppCompatActivity {
                             }
 
                             // specify an adapter (see also next example)
-                            mAdapter = new MyAdapter(news,NewsActivity.this); // 내가 만들 어댑터가 여기에!
+                            mAdapter = new MyAdapter(news,NewsActivity.this, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Object obg = v.getTag();
+                                    if(obg != null){
+                                        int position = (int)obg;
+                                        NewsData newsDataSet = ((MyAdapter)mAdapter).getNews(position);
+                                        Intent intent = new Intent(NewsActivity.this,MyAdapter.class);
+                                        //1. 본문 내용만 넘기기
+                                        //2. 전체를 다 넘기기
+                                        //2-1. 하나씩
+                                        //2-2. 한번에 다 ?? 이건 어떻게?
+                                        intent.putExtra("title", newsDataSet.getTitle());
+                                        intent.putExtra("urlToImage", newsDataSet.getUrlToImage());
+                                        intent.putExtra("content", newsDataSet.getContent());
+                                        startActivity(intent);
+                                    }
+
+                                }
+                            }); // 내가 만들 어댑터가 여기에!
                             mRecyclerView.setAdapter(mAdapter);
 
                         } catch (JSONException e) {

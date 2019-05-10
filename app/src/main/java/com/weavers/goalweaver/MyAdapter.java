@@ -24,6 +24,7 @@ import java.util.SimpleTimeZone;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<NewsData> mDataset;
+    private static View.OnClickListener onClickListener;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -34,6 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView TextView_title;
         public TextView TextView_content;
         public SimpleDraweeView ImageView_title;
+        public View rootView;
 
         public MyViewHolder(View v) { //row_new.xml에 들어가는 이미지와 텍스트 정의
             super(v);
@@ -42,6 +44,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             TextView_title = v.findViewById(R.id.TextView_title);
             TextView_content = v.findViewById(R.id.TextView_content);
             ImageView_title = v.findViewById(R.id.ImageView_title);
+            rootView = v;
+
+            v.setClickable(true);// 누를 수 있다 없다
+            v.setEnabled(true);// 활성화 상태이다 아니다
+            v.setOnClickListener(onClickListener); // rootView 통해서 태그를 붙여줌.
 
             // v.findViewById인 이유
             // 액티비티에서는 바로 find가 되는 이유. 액티비티가 부모의 뷰, 즉 그자체가 뷰이기 때문에 바로 가능!
@@ -50,10 +57,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<NewsData> myDataset, Context context) {
+    public MyAdapter(List<NewsData> myDataset, Context context, View.OnClickListener onClick) {
         //{"1","2"}
         mDataset = myDataset; // 굳이 액티비티에서 값을 받아오지 않고 MyAdpter이라는 지금 이 함수에 입력값 없이
         // 바로 여기에 mDataset = NewsActivity 어쩌고 해서 불러올 수도 있음.
+
+        onClickListener = onClick;
 
         Fresco.initialize(context); // 액티비티에서 컨텍스트 받아옴. 이런식이면 데이터 누수? 현상이 일어나서 좋지 않음.
 
@@ -91,6 +100,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
         Uri uri = Uri.parse(news.getUrlToImage());
         holder.ImageView_title.setImageURI(uri);
+
+        //tag - label
+        holder.rootView.setTag(position);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -98,5 +110,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public int getItemCount() {
         //삼항 연산자
         return mDataset == null ? 0: mDataset.size();//if else 한줄로 합친거.
+    }
+
+    public NewsData getNews(int position){
+        return mDataset !=null? mDataset.get(position): null;
     }
 }
